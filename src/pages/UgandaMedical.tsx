@@ -1,4 +1,5 @@
 import { DonateBand } from '../components/PageHero'
+import { TextCard } from '../components/SiteCards'
 import { SITE } from '../site'
 import { usePageMeta } from '../usePageMeta'
 
@@ -33,6 +34,7 @@ export function UgandaMedical() {
           alt="A wooden medical or school building under construction in rural Uganda"
           width={900}
           height={1200}
+          fetchPriority="high"
         />
         <div className="page-hero-copy">
           <p className="hero-kicker">Uganda · Medical Center</p>
@@ -78,11 +80,14 @@ export function UgandaMedical() {
         <div className="container">
           <div className="card-grid three text-cards">
             {services.map((service) => (
-              <a className="text-card" key={service.title} href={SITE.donateUrl}>
-                <h3>{service.title}</h3>
+              <TextCard
+                key={service.title}
+                title={service.title}
+                href={SITE.donateUrl}
+                cta="Give toward care"
+              >
                 <p>{service.body}</p>
-                <span>Give toward care</span>
-              </a>
+              </TextCard>
             ))}
           </div>
         </div>

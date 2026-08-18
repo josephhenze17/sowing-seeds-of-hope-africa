@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
 import { usePageMeta } from '../usePageMeta'
+import { CtaButton } from '../components/CtaButton'
 
 export function NotFound() {
   usePageMeta({
@@ -15,12 +15,10 @@ export function NotFound() {
         <h1>This path is not planted yet.</h1>
         <p>The page you asked for is not here. Start from home, or go where the work is growing.</p>
         <div className="hero-actions" style={{ justifyContent: 'center', marginTop: '1.5rem' }}>
-          <Link className="btn btn-primary" to="/">
-            Home
-          </Link>
-          <Link className="btn btn-ghost" to="/uganda">
+          <CtaButton to="/">Home</CtaButton>
+          <CtaButton variant="outline" to="/uganda">
             Uganda
-          </Link>
+          </CtaButton>
         </div>
       </div>
     </section>

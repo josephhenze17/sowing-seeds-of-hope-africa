@@ -1,14 +1,36 @@
-import { useEffect, useId, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { NavLink, useLocation } from 'react-router-dom'
+import { MenuIcon } from 'lucide-react'
 import { SITE } from '../site'
+import { Button } from '@/components/ui/button'
+import { CtaButton } from './CtaButton'
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from '@/components/ui/navigation-menu'
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
+import { Separator } from '@/components/ui/separator'
 
 const ugandaLinks = [
+  { to: '/uganda', label: 'Uganda Overview' },
   { to: '/uganda/schools', label: 'Schools' },
   { to: '/uganda/medical-center', label: 'Medical Center' },
   { to: '/uganda/other', label: 'Other' },
 ]
 
 const kenyaLinks = [
+  { to: '/kenya', label: 'Kenya Overview' },
   { to: '/kenya/school-fees', label: 'Supporting School Fees' },
   { to: '/kenya/other', label: 'Other Opportunities' },
 ]
@@ -16,9 +38,7 @@ const kenyaLinks = [
 export function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const menuId = useId()
   const location = useLocation()
-  const navRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 16)
@@ -31,16 +51,8 @@ export function Navbar() {
     setOpen(false)
   }, [location.pathname])
 
-  useEffect(() => {
-    const onKey = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') setOpen(false)
-    }
-    document.addEventListener('keydown', onKey)
-    return () => document.removeEventListener('keydown', onKey)
-  }, [])
-
   return (
-    <header className={`nav${scrolled ? ' scrolled' : ''}${open ? ' open' : ''}`} ref={navRef}>
+    <header className={`nav${scrolled ? ' scrolled' : ''}`}>
       <div className="nav-inner">
         <NavLink className="nav-brand" to="/" aria-label="Sowing Seeds of Hope Africa home">
           <img
@@ -52,58 +64,104 @@ export function Navbar() {
           />
         </NavLink>
 
-        <button
-          className="nav-toggle"
-          type="button"
-          aria-expanded={open}
-          aria-controls={menuId}
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          onClick={() => setOpen((value) => !value)}
-        >
-          <span />
-        </button>
+        <NavigationMenu className="hidden min-[901px]:flex" align="end" delay={50} closeDelay={150}>
+          <NavigationMenuList className="gap-1">
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                render={<NavLink to="/" end />}
+              >
+                Home
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger nativeButton={false} render={<NavLink to="/uganda" />}>
+                Uganda
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                {ugandaLinks.map((link) => (
+                  <NavigationMenuLink key={link.to} render={<NavLink to={link.to} />}>
+                    {link.label}
+                  </NavigationMenuLink>
+                ))}
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuTrigger nativeButton={false} render={<NavLink to="/kenya" />}>
+                Kenya
+              </NavigationMenuTrigger>
+              <NavigationMenuContent>
+                {kenyaLinks.map((link) => (
+                  <NavigationMenuLink key={link.to} render={<NavLink to={link.to} />}>
+                    {link.label}
+                  </NavigationMenuLink>
+                ))}
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                render={<NavLink to="/donations" />}
+              >
+                Donations
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
+              <NavigationMenuLink
+                className={navigationMenuTriggerStyle()}
+                render={<NavLink to="/contact" />}
+              >
+                Contact
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
+        </NavigationMenu>
 
-        <nav className="nav-links" id={menuId}>
-          <NavLink to="/" end className={({ isActive }) => (isActive ? 'is-active' : undefined)}>
-            Home
-          </NavLink>
+        <div className="hidden min-[901px]:block">
+          <CtaButton href={SITE.donateUrl}>Give Hope</CtaButton>
+        </div>
 
-          <div className="nav-item">
-            <NavLink to="/uganda" className={({ isActive }) => (isActive ? 'is-active' : undefined)}>
-              Uganda
-            </NavLink>
-            <div className="nav-sub">
+        <Sheet open={open} onOpenChange={setOpen}>
+          <SheetTrigger
+            className="min-[901px]:hidden"
+            render={
+              <Button variant="ghost" size="icon" aria-label={open ? 'Close menu' : 'Open menu'} />
+            }
+          >
+            <MenuIcon aria-hidden="true" />
+          </SheetTrigger>
+          <SheetContent side="right" className="w-72">
+            <SheetHeader>
+              <SheetTitle>Menu</SheetTitle>
+            </SheetHeader>
+            <nav className="flex flex-col gap-1 px-4" aria-label="Mobile">
+              <NavLink className="rounded-lg px-2 py-2 text-sm hover:bg-muted" to="/" end>
+                Home
+              </NavLink>
               {ugandaLinks.map((link) => (
-                <NavLink key={link.to} to={link.to}>
+                <NavLink className="rounded-lg px-2 py-2 text-sm hover:bg-muted" key={link.to} to={link.to}>
                   {link.label}
                 </NavLink>
               ))}
-            </div>
-          </div>
-
-          <div className="nav-item">
-            <NavLink to="/kenya" className={({ isActive }) => (isActive ? 'is-active' : undefined)}>
-              Kenya
-            </NavLink>
-            <div className="nav-sub">
+              <Separator />
               {kenyaLinks.map((link) => (
-                <NavLink key={link.to} to={link.to}>
+                <NavLink className="rounded-lg px-2 py-2 text-sm hover:bg-muted" key={link.to} to={link.to}>
                   {link.label}
                 </NavLink>
               ))}
-            </div>
-          </div>
-
-          <NavLink to="/donations" className={({ isActive }) => (isActive ? 'is-active' : undefined)}>
-            Donations
-          </NavLink>
-          <NavLink to="/contact" className={({ isActive }) => (isActive ? 'is-active' : undefined)}>
-            Contact
-          </NavLink>
-          <a className="nav-cta" href={SITE.donateUrl}>
-            Give Hope
-          </a>
-        </nav>
+              <Separator />
+              <NavLink className="rounded-lg px-2 py-2 text-sm hover:bg-muted" to="/donations">
+                Donations
+              </NavLink>
+              <NavLink className="rounded-lg px-2 py-2 text-sm hover:bg-muted" to="/contact">
+                Contact
+              </NavLink>
+              <CtaButton className="mt-3 w-full" href={SITE.donateUrl}>
+                Give Hope
+              </CtaButton>
+            </nav>
+          </SheetContent>
+        </Sheet>
       </div>
     </header>
   )

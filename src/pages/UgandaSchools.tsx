@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
 import { ScrollGallery } from '../components/ScrollGallery'
 import { DonateBand } from '../components/PageHero'
+import { TextCard } from '../components/SiteCards'
+import { CtaButton } from '../components/CtaButton'
 import { schoolGallery, SITE } from '../site'
 import { usePageMeta } from '../usePageMeta'
 
@@ -20,6 +21,7 @@ export function UgandaSchools() {
           alt="A teacher helping students with worksheets in a rustic Uganda classroom"
           width={900}
           height={1200}
+          fetchPriority="high"
         />
         <div className="page-hero-copy">
           <p className="hero-kicker">Uganda · Schools</p>
@@ -80,8 +82,7 @@ export function UgandaSchools() {
           <p className="section-kicker">Future goals</p>
           <h2 className="section-title">What these schools are growing toward next.</h2>
           <div className="card-grid three text-cards">
-            <article className="text-card">
-              <h3>Expanding classrooms</h3>
+            <TextCard title="Expanding classrooms">
               <p>
                 Every year enrollment at Papa Joe Academy continues to grow, and we add the
                 classrooms and learning spaces needed to serve more students. This work builds new
@@ -91,9 +92,8 @@ export function UgandaSchools() {
                 Expanding the school lets more children from surrounding communities access quality
                 education in a safe, supportive environment.
               </p>
-            </article>
-            <article className="text-card">
-              <h3>Girls’ education</h3>
+            </TextCard>
+            <TextCard title="Girls’ education">
               <p>
                 Education for girls remains a central focus. This initiative supports St. Florence
                 Memorial School with school supplies, uniforms, and resources that help girls stay
@@ -103,9 +103,8 @@ export function UgandaSchools() {
                 Investing in girls’ education empowers young women and strengthens families and
                 communities for generations to come.
               </p>
-            </article>
-            <article className="text-card">
-              <h3>School nutrition</h3>
+            </TextCard>
+            <TextCard title="School nutrition">
               <p>
                 Proper nutrition plays a critical role in a child’s ability to learn and grow. This
                 project provides nutritious meals and food support for students at Sowing Seeds of
@@ -115,7 +114,7 @@ export function UgandaSchools() {
                 Healthy meals during the school day help concentration, attendance, and overall
                 well-being.
               </p>
-            </article>
+            </TextCard>
           </div>
         </div>
       </section>
@@ -129,12 +128,10 @@ export function UgandaSchools() {
 
       <section className="section cta-row">
         <div className="container">
-          <a className="btn btn-primary" href={SITE.donateUrl}>
-            Support a classroom
-          </a>
-          <Link className="btn btn-ghost" to="/uganda/medical-center">
+          <CtaButton href={SITE.donateUrl}>Support a classroom</CtaButton>
+          <CtaButton variant="outline" to="/uganda/medical-center">
             See the medical center
-          </Link>
+          </CtaButton>
         </div>
       </section>
 

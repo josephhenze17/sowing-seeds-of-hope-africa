@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom'
 import { FadeGallery } from '../components/FadeGallery'
 import { DonateBand } from '../components/PageHero'
+import { ProgramCard } from '../components/SiteCards'
 import { kenyaGallery } from '../site'
 import { usePageMeta } from '../usePageMeta'
 
@@ -34,7 +34,7 @@ export function Kenya() {
           </p>
           <h1>Keep a child in class.</h1>
         </div>
-        <FadeGallery images={kenyaGallery} />
+        <FadeGallery images={kenyaGallery} priority />
       </section>
 
       <section className="section">
@@ -42,35 +42,30 @@ export function Kenya() {
           <p className="section-kicker">Choose a path</p>
           <h2 className="section-title">See the work on the ground.</h2>
           <div className="card-grid two">
-            <Link className="program-card" to="/kenya/school-fees">
-              <img
-                src="/images/home/planting.jpg"
-                alt="Hands planting a seedling, a picture of school-fee support taking root in Kenya"
-                width={1920}
-                height={720}
-              />
-              <div className="program-card-copy">
-                <h3>Supporting school fees</h3>
-                <p>
-                  A year of tuition can be the difference between staying enrolled and leaving
-                  early.
-                </p>
-                <span>See fee support</span>
-              </div>
-            </Link>
-            <Link className="program-card" to="/kenya/other">
-              <img
-                src="/images/home/welcome.jpg"
-                alt="Partners gathered together, standing in for Kenya community opportunities"
-                width={1200}
-                height={1000}
-              />
-              <div className="program-card-copy">
-                <h3>Other opportunities</h3>
-                <p>Supplies, mentoring, and community partnerships that keep learning possible.</p>
-                <span>See other ways</span>
-              </div>
-            </Link>
+            <ProgramCard
+              to="/kenya/school-fees"
+              title="Supporting school fees"
+              body="A year of tuition can be the difference between staying enrolled and leaving early."
+              cta="See fee support"
+              image={{
+                src: '/images/home/planting.jpg',
+                alt: 'Hands planting a seedling, a picture of school-fee support taking root in Kenya',
+                width: 1920,
+                height: 720,
+              }}
+            />
+            <ProgramCard
+              to="/kenya/other"
+              title="Other opportunities"
+              body="Supplies, mentoring, and community partnerships that keep learning possible."
+              cta="See other ways"
+              image={{
+                src: '/images/home/welcome.jpg',
+                alt: 'Partners gathered together, standing in for Kenya community opportunities',
+                width: 1200,
+                height: 1000,
+              }}
+            />
           </div>
         </div>
       </section>

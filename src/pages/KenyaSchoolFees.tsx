@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom'
 import { DonateBand } from '../components/PageHero'
+import { TextCard } from '../components/SiteCards'
+import { CtaButton } from '../components/CtaButton'
 import { SITE } from '../site'
 import { usePageMeta } from '../usePageMeta'
 
@@ -19,6 +20,7 @@ export function KenyaSchoolFees() {
           alt="Hands gathering around a seedling, a picture of school-fee support taking root"
           width={1920}
           height={720}
+          fetchPriority="high"
         />
         <div className="page-hero-copy">
           <p className="hero-kicker">Kenya · School fees</p>
@@ -39,29 +41,24 @@ export function KenyaSchoolFees() {
 
       <section className="section">
         <div className="container card-grid three text-cards">
-          <article className="text-card">
-            <h3>Stay enrolled</h3>
+          <TextCard title="Stay enrolled">
             <p>Cover a term so a student does not drop out mid-year.</p>
-          </article>
-          <article className="text-card">
-            <h3>Finish the path</h3>
+          </TextCard>
+          <TextCard title="Finish the path">
             <p>Help a learner move from one grade to the next without a gap.</p>
-          </article>
-          <article className="text-card">
-            <h3>Walk with a family</h3>
+          </TextCard>
+          <TextCard title="Walk with a family">
             <p>Gifts can be one-time or ongoing. We match support to real need.</p>
-          </article>
+          </TextCard>
         </div>
       </section>
 
       <section className="section cta-row">
         <div className="container">
-          <a className="btn btn-primary" href={SITE.donateUrl}>
-            Support school fees
-          </a>
-          <Link className="btn btn-ghost" to="/contact">
+          <CtaButton href={SITE.donateUrl}>Support school fees</CtaButton>
+          <CtaButton variant="outline" to="/contact">
             Ask about a student
-          </Link>
+          </CtaButton>
         </div>
       </section>
 

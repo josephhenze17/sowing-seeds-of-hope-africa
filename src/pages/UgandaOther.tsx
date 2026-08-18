@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
 import { FadeGallery } from '../components/FadeGallery'
 import { DonateBand } from '../components/PageHero'
+import { StoryCard } from '../components/SiteCards'
+import { CtaButton } from '../components/CtaButton'
 import { usePageMeta } from '../usePageMeta'
 import type { Photo } from '../site'
 
@@ -50,48 +51,44 @@ export function UgandaOther() {
             up.
           </p>
         </div>
-        <FadeGallery images={otherPhotos} />
+        <FadeGallery images={otherPhotos} priority />
       </section>
 
       <section className="section">
         <div className="container card-grid two">
-          <article className="story-card">
-            <img
-              src="/images/uganda/laudato-si.png"
-              alt="Community members in matching shirts with children against a lush green hill"
-              width={1600}
-              height={1067}
-            />
-            <h2>Care for our common home</h2>
-            <p>
-              Students and partners plant, tend, and protect the land around their schools — a
-              living classroom beside the lesson on the wall.
-            </p>
-          </article>
-          <article className="story-card">
-            <img
-              src="/images/uganda/administrator.png"
-              alt="A local leader reviewing notes at a wooden desk"
-              width={900}
-              height={1200}
-            />
-            <h2>Local hands, lasting work</h2>
-            <p>
-              Classrooms and clinics are led by people who live the work. Support from afar is meant
-              to strengthen what is already growing.
-            </p>
-          </article>
+          <StoryCard
+            title="Care for our common home"
+            image={{
+              src: '/images/uganda/laudato-si.png',
+              alt: 'Community members in matching shirts with children against a lush green hill',
+              width: 1600,
+              height: 1067,
+            }}
+          >
+            Students and partners plant, tend, and protect the land around their schools — a
+            living classroom beside the lesson on the wall.
+          </StoryCard>
+          <StoryCard
+            title="Local hands, lasting work"
+            image={{
+              src: '/images/uganda/administrator.png',
+              alt: 'A local leader reviewing notes at a wooden desk',
+              width: 900,
+              height: 1200,
+            }}
+          >
+            Classrooms and clinics are led by people who live the work. Support from afar is meant
+            to strengthen what is already growing.
+          </StoryCard>
         </div>
       </section>
 
       <section className="section cta-row">
         <div className="container">
-          <Link className="btn btn-primary" to="/contact">
-            Partner with us
-          </Link>
-          <Link className="btn btn-ghost" to="/uganda/schools">
+          <CtaButton to="/contact">Partner with us</CtaButton>
+          <CtaButton variant="outline" to="/uganda/schools">
             Back to schools
-          </Link>
+          </CtaButton>
         </div>
       </section>
 

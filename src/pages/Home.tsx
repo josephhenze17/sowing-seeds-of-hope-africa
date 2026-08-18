@@ -1,5 +1,6 @@
-import { Link } from 'react-router-dom'
 import { DonateToday } from '../components/PageHero'
+import { ProgramCard } from '../components/SiteCards'
+import { CtaButton } from '../components/CtaButton'
 import { usePageMeta } from '../usePageMeta'
 import { SITE } from '../site'
 
@@ -41,6 +42,7 @@ export function Home() {
           alt="Young hands gathering around a seedling being planted in dark soil"
           width={1920}
           height={720}
+          fetchPriority="high"
         />
         <div className="home-hero-copy">
           <p className="hero-kicker">Uganda · Kenya</p>
@@ -50,12 +52,10 @@ export function Home() {
           </h1>
           <p>We serve communities across Africa with healthcare, education, nutrition, and the basics they need to thrive.</p>
           <div className="hero-actions">
-            <a className="btn btn-primary" href={SITE.donateUrl}>
-              Give Hope
-            </a>
-            <Link className="btn btn-ghost" to="/uganda">
+            <CtaButton href={SITE.donateUrl}>Give Hope</CtaButton>
+            <CtaButton variant="outline" to="/uganda" onMedia>
               See Our Work
-            </Link>
+            </CtaButton>
           </div>
         </div>
       </section>
@@ -82,6 +82,7 @@ export function Home() {
             alt="Friends and supporters of Sowing Seeds of Hope Africa gathered together"
             width={1200}
             height={1000}
+            loading="lazy"
           />
         </div>
         <div className="welcome-copy">
@@ -102,32 +103,30 @@ export function Home() {
           <p className="section-kicker">Where we work</p>
           <h2 className="section-title">Two countries. One invitation to grow.</h2>
           <div className="card-grid two">
-            <Link className="program-card" to="/uganda">
-              <img
-                src="/images/uganda/uniforms-plaid.png"
-                alt="Students in yellow and plaid uniforms outside a wooden school in Uganda"
-                width={1200}
-                height={800}
-              />
-              <div className="program-card-copy">
-                <h3>Uganda</h3>
-                <p>Schools, a medical center underway, and community work from classrooms to hillsides.</p>
-                <span>Explore Uganda</span>
-              </div>
-            </Link>
-            <Link className="program-card" to="/kenya">
-              <img
-                src="/images/home/planting.jpg"
-                alt="Hands planting a seedling, a symbol of school-fee support taking root in Kenya"
-                width={1200}
-                height={800}
-              />
-              <div className="program-card-copy">
-                <h3>Kenya</h3>
-                <p>School-fee support and other chances for children to stay in class and finish the year.</p>
-                <span>Explore Kenya</span>
-              </div>
-            </Link>
+            <ProgramCard
+              to="/uganda"
+              title="Uganda"
+              body="Schools, a medical center underway, and community work from classrooms to hillsides."
+              cta="Explore Uganda"
+              image={{
+                src: '/images/uganda/uniforms-plaid.png',
+                alt: 'Students in yellow and plaid uniforms outside a wooden school in Uganda',
+                width: 1200,
+                height: 800,
+              }}
+            />
+            <ProgramCard
+              to="/kenya"
+              title="Kenya"
+              body="School-fee support and other chances for children to stay in class and finish the year."
+              cta="Explore Kenya"
+              image={{
+                src: '/images/home/planting.jpg',
+                alt: 'Hands planting a seedling, a symbol of school-fee support taking root in Kenya',
+                width: 1200,
+                height: 800,
+              }}
+            />
           </div>
         </div>
       </section>

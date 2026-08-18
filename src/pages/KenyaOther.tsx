@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
 import { DonateBand } from '../components/PageHero'
+import { TextCard } from '../components/SiteCards'
 import { usePageMeta } from '../usePageMeta'
 
 export function KenyaOther() {
@@ -18,6 +18,7 @@ export function KenyaOther() {
           alt="A seedling being planted, standing in for Kenya partnership opportunities"
           width={1920}
           height={720}
+          fetchPriority="high"
         />
         <div className="page-hero-copy">
           <p className="hero-kicker">Kenya · Other opportunities</p>
@@ -28,16 +29,12 @@ export function KenyaOther() {
 
       <section className="section">
         <div className="container card-grid two">
-          <Link className="text-card" to="/contact">
-            <h3>Learning materials</h3>
+          <TextCard title="Learning materials" to="/contact" cta="Offer support">
             <p>Exercise books, uniforms, and the small tools that make a classroom work.</p>
-            <span>Offer support</span>
-          </Link>
-          <Link className="text-card" to="/contact">
-            <h3>Walk alongside</h3>
+          </TextCard>
+          <TextCard title="Walk alongside" to="/contact" cta="Start a conversation">
             <p>Visit, pray, mentor, or help connect a family with the right kind of help.</p>
-            <span>Start a conversation</span>
-          </Link>
+          </TextCard>
         </div>
       </section>
 

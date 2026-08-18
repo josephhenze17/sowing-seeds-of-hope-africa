@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { BrowserRouter, Navigate, Route, Routes, useLocation } from 'react-router-dom'
 import { Navbar } from './components/Navbar'
 import { Footer } from './components/Footer'
+import { Toaster } from '@/components/ui/sonner'
 import { Home } from './pages/Home'
 import { Uganda } from './pages/Uganda'
 import { UgandaSchools } from './pages/UgandaSchools'
@@ -27,8 +28,11 @@ function App() {
     <BrowserRouter>
       <ScrollToTop />
       <div className="site">
+        <a className="skip-link" href="#main">
+          Skip to content
+        </a>
         <Navbar />
-        <main>
+        <main id="main">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<Navigate to="/" replace />} />
@@ -45,6 +49,7 @@ function App() {
           </Routes>
         </main>
         <Footer />
+        <Toaster position="bottom-right" />
       </div>
     </BrowserRouter>
   )

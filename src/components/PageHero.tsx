@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom'
 import { SITE } from '../site'
+import { CtaButton } from './CtaButton'
 
 type PageHeroProps = {
   kicker: string
@@ -22,7 +22,13 @@ export function PageHero({
 }: PageHeroProps) {
   return (
     <section className="page-hero">
-      <img src={image} alt={imageAlt} width={width} height={height} />
+      <img
+        src={image}
+        alt={imageAlt}
+        width={width}
+        height={height}
+        fetchPriority="high"
+      />
       <div className="page-hero-copy">
         <p className="hero-kicker">{kicker}</p>
         <h1>{title}</h1>
@@ -43,12 +49,10 @@ export function DonateToday() {
           children in Uganda and Kenya.
         </p>
         <div className="hero-actions">
-          <a className="btn btn-primary" href={SITE.donateUrl}>
-            Donate Today
-          </a>
-          <Link className="btn btn-ghost" to="/donations">
+          <CtaButton href={SITE.donateUrl}>Donate Today</CtaButton>
+          <CtaButton variant="outline" to="/donations" onMedia>
             How gifts are used
-          </Link>
+          </CtaButton>
         </div>
       </div>
     </section>
@@ -64,12 +68,10 @@ export function DonateBand() {
           <h2>A gift today becomes a classroom, a clinic visit, or a year in school.</h2>
         </div>
         <div className="hero-actions">
-          <a className="btn btn-primary" href={SITE.donateUrl}>
-            Give Hope
-          </a>
-          <Link className="btn btn-ghost" to="/contact">
+          <CtaButton href={SITE.donateUrl}>Give Hope</CtaButton>
+          <CtaButton variant="outline" to="/contact" onMedia>
             Start a Conversation
-          </Link>
+          </CtaButton>
         </div>
       </div>
     </section>

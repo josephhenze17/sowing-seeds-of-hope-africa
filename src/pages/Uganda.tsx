@@ -1,6 +1,7 @@
-import { Link } from 'react-router-dom'
 import { FadeGallery } from '../components/FadeGallery'
 import { DonateBand } from '../components/PageHero'
+import { ProgramCard } from '../components/SiteCards'
+import { CtaButton } from '../components/CtaButton'
 import { ugandaGallery } from '../site'
 import { usePageMeta } from '../usePageMeta'
 
@@ -39,7 +40,7 @@ export function Uganda() {
             Uganda
           </p>
           <h1>Classrooms, Clinics, &amp; a Reason for Hope.</h1>
-          <a className="btn btn-ghost btn-see-work" href="#uganda-work">
+          <CtaButton className="btn-see-work" variant="outline" href="#uganda-work" onMedia>
             See the work
             <svg viewBox="0 0 20 20" aria-hidden="true">
               <path
@@ -51,9 +52,9 @@ export function Uganda() {
                 strokeLinejoin="round"
               />
             </svg>
-          </a>
+          </CtaButton>
         </div>
-        <FadeGallery images={ugandaGallery} />
+        <FadeGallery images={ugandaGallery} priority />
       </section>
 
       <section className="section" id="uganda-work">
@@ -61,45 +62,42 @@ export function Uganda() {
           <p className="section-kicker">Choose a path</p>
           <h2 className="section-title">See the work on the ground.</h2>
           <div className="card-grid three">
-            <Link className="program-card" to="/uganda/schools">
-              <img
-                src="/images/uganda/classroom-teacher.png"
-                alt="Students writing at wooden benches in a rural Uganda classroom"
-                width={900}
-                height={1200}
-              />
-              <div className="program-card-copy">
-                <h3>Schools</h3>
-                <p>St. Florence Memorial School and Papa Joe Academy — kindergarten through grade school.</p>
-                <span>Visit schools</span>
-              </div>
-            </Link>
-            <Link className="program-card" to="/uganda/medical-center">
-              <img
-                src="/images/uganda/aid-child.png"
-                alt="A volunteer offering aid to a young girl in Uganda"
-                width={900}
-                height={1200}
-              />
-              <div className="program-card-copy">
-                <h3>Medical Center</h3>
-                <p>Divine Mercy Medical Center: malaria care, maternity, and nutrition for rural families.</p>
-                <span>See the clinic</span>
-              </div>
-            </Link>
-            <Link className="program-card" to="/uganda/other">
-              <img
-                src="/images/uganda/laudato-si.png"
-                alt="Community partners and schoolchildren standing on a green hillside"
-                width={1600}
-                height={1067}
-              />
-              <div className="program-card-copy">
-                <h3>Other</h3>
-                <p>Construction, environmental care, and the everyday partnerships that hold the work together.</p>
-                <span>See more</span>
-              </div>
-            </Link>
+            <ProgramCard
+              to="/uganda/schools"
+              title="Schools"
+              body="St. Florence Memorial School and Papa Joe Academy — kindergarten through grade school."
+              cta="Visit schools"
+              image={{
+                src: '/images/uganda/classroom-teacher.png',
+                alt: 'Students writing at wooden benches in a rural Uganda classroom',
+                width: 900,
+                height: 1200,
+              }}
+            />
+            <ProgramCard
+              to="/uganda/medical-center"
+              title="Medical Center"
+              body="Divine Mercy Medical Center: malaria care, maternity, and nutrition for rural families."
+              cta="See the clinic"
+              image={{
+                src: '/images/uganda/aid-child.png',
+                alt: 'A volunteer offering aid to a young girl in Uganda',
+                width: 900,
+                height: 1200,
+              }}
+            />
+            <ProgramCard
+              to="/uganda/other"
+              title="Other"
+              body="Construction, environmental care, and the everyday partnerships that hold the work together."
+              cta="See more"
+              image={{
+                src: '/images/uganda/laudato-si.png',
+                alt: 'Community partners and schoolchildren standing on a green hillside',
+                width: 1600,
+                height: 1067,
+              }}
+            />
           </div>
         </div>
       </section>

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { SITE } from '../site'
+import { Separator } from '@/components/ui/separator'
 
 export function Footer() {
   return (
@@ -46,6 +47,7 @@ export function Footer() {
           </ul>
         </div>
       </div>
+      <Separator className="bg-white/20" />
       <p className="footer-copy">
         © {new Date().getFullYear()} Sowing Seeds of Hope Africa · {SITE.taxStatus}
       </p>
